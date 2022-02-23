@@ -8,12 +8,12 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.radanov.movieapp10.HomeFragment"
-        android:label="Home"
+        android:label="Popular Movies"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.radanov.movieapp10.DashboardFragment"
-        android:label="Dashboard"
+        android:label="Watchlist"
         tools:layout="@layout/fragment_dashboard" />
     <fragment
         android:id="@+id/settingsFragment2"

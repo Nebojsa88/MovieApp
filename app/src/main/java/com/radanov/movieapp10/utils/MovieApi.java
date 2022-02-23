@@ -18,9 +18,6 @@ public interface MovieApi {
             @Query("query")String query,
             @Query("page")int page);
 
-
-
-
     //Get popular movies
     //https://api.themoviedb.org/3/movie/popular       ?api_key=543ced1b67d908afce8f45154ad28aef&page=1
 
@@ -28,10 +25,6 @@ public interface MovieApi {
     Call<MovieSearchResponse> getPopular(
             @Query("api_key")String key,
             @Query("page")int page);
-
-
-
-
 
     //Search for movies by id
     //https://api.themoviedb.org/3/movie/550?api_key=543ced1b67d908afce8f45154ad28aef

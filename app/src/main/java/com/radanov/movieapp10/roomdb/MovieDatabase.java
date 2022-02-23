@@ -32,7 +32,7 @@ public abstract class MovieDatabase extends RoomDatabase {
 
     }
 
-    private static Callback roomCallBack = new Callback()
+    private static final Callback roomCallBack = new Callback()
     {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
@@ -43,7 +43,7 @@ public abstract class MovieDatabase extends RoomDatabase {
 
     private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void>
     {
-        private MovieDao movieDao;
+        private final MovieDao movieDao;
 
         private PopulateDbAsyncTask(MovieDatabase database)
         {

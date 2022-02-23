@@ -10,37 +10,33 @@ import androidx.lifecycle.ViewModel;
 
 public class MovieListViewModel extends ViewModel {
 
-    //This class is used for VIEWMODEL
-
-
+    //This class is used for ViewModel
     private MovieRepository movieRepository;
 
-    //Constructor
     public MovieListViewModel() {
         movieRepository = MovieRepository.getInstance();
     }
 
-    public LiveData<List<MovieModel>> getMovies(){
+    public LiveData<List<MovieModel>> getMovies() {
         return movieRepository.getMovies();
     }
 
-    public LiveData<List<MovieModel>> getPop(){
+    public LiveData<List<MovieModel>> getPop() {
         return movieRepository.getPop();
     }
 
     //3-Calling method in view-model
-    public void searchMovieApi(String query, int pageNumber){
+    public void searchMovieApi(String query, int pageNumber) {
         movieRepository.searchMovieApi(query, pageNumber);
     }
 
-    public void searchMoviePop( int pageNumber){
-        movieRepository.searchMoviePop( pageNumber);
+    public void searchMoviePop(int pageNumber) {
+        movieRepository.searchMoviePop(pageNumber);
     }
 
-    public void searchNextPage(){
+    public void searchNextPage() {
         movieRepository.searchNextPage();
     }
-
 
 
 }

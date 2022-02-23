@@ -17,23 +17,24 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.radanov.movieapp10.adapters.MovieDbAdapter;
+
 import com.radanov.movieapp10.adapters.MovieOfflineAdapter;
 import com.radanov.movieapp10.adapters.MovieRecycleView;
 import com.radanov.movieapp10.adapters.OnMovieListener;
 import com.radanov.movieapp10.models.MovieModel;
-import com.radanov.movieapp10.models.MovieModelDb;
+
 import com.radanov.movieapp10.models.MovieModelOffline;
-import com.radanov.movieapp10.roomdb.MovieDaoOffline;
+
 import com.radanov.movieapp10.viewmodels.MovieListViewModel;
 import com.radanov.movieapp10.viewmodels.MovieViewModelDb;
 import com.radanov.movieapp10.viewmodels.MovieViewModelOffline;
 
 import java.util.List;
+import java.util.Objects;
 
 public class MovieListActivity extends AppCompatActivity implements OnMovieListener {
 
-    Button buttonGoWatchlist;
+    private Button buttonGoWatchlist;
 
     //RecycleView
     private RecyclerView recyclerView;
@@ -52,7 +53,7 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_list);
 
-        getSupportActionBar().setTitle("Movie List");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Movies");
 
         recyclerView = findViewById(R.id.recyclerView);
 
