@@ -5,7 +5,8 @@ import android.util.Log;
 import com.radanov.movieapp10.AppExecutors;
 import com.radanov.movieapp10.models.MovieModel;
 import com.radanov.movieapp10.models.MovieModelOffline;
-import com.radanov.movieapp10.request.Servicey;
+import com.radanov.movieapp10.models.MovieResponse;
+import com.radanov.movieapp10.retrofit.utils.ApiUtils;
 import com.radanov.movieapp10.utils.Credentials;
 
 import java.io.IOException;
@@ -170,12 +171,12 @@ public class MovieApiClient {
 
         }
 
-            //Search Method query
-            private Call<MovieSearchResponse> getMovies(String query, int pageNumber){
+        //Search Method query
+        private Call<MovieSearchResponse> getMovies(String query, int pageNumber){
 
-                return Servicey.getMovieApi().searchMovie(Credentials.API_KEY, query, pageNumber);
+            return ApiUtils.getApiService().searchMovie(Credentials.API_KEY, query, pageNumber);
 
-            }
+        }
 
         public void cancelRequest(){
             Log.v("Tag", "Cancelling search request ");
@@ -232,9 +233,9 @@ public class MovieApiClient {
         }
 
         //Search Method query
-        private Call<MovieSearchResponse> getPop(int pageNumber){
+        private Call<MovieResponse> getPop(int pageNumber){
 
-            return Servicey.getMovieApi().getPopular(Credentials.API_KEY, pageNumber);
+            return ApiUtils.getApiService().getPopular(Credentials.API_KEY, pageNumber);
 
         }
 
@@ -245,8 +246,7 @@ public class MovieApiClient {
         }
 
     }
-    }
-
+}
 
 
 

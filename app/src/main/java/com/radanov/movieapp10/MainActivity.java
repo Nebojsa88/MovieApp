@@ -12,14 +12,14 @@ import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button goToApp;
+    //private Button goToApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        goToApp = findViewById(R.id.button_goToApp);
+       /* goToApp = findViewById(R.id.button_goToApp);
 
         goToApp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, MovieListActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 

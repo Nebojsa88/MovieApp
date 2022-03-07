@@ -30,9 +30,6 @@ public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnC
         ratingBar = itemView.findViewById(R.id.rating_bar);
         itemView.setOnClickListener(this);
 
-
-
-
     }
 
     @Override

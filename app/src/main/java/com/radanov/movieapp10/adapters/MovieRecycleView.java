@@ -31,7 +31,7 @@ public class MovieRecycleView extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = null;
+        View view;
 
         if(viewType == DISPLAY_SEARCH){
 

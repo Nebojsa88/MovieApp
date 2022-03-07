@@ -1,6 +1,7 @@
-package com.radanov.movieapp10.utils;
+package com.radanov.movieapp10.retrofit.endpoints;
 
 import com.radanov.movieapp10.models.MovieModel;
+import com.radanov.movieapp10.models.MovieResponse;
 import com.radanov.movieapp10.response.MovieSearchResponse;
 
 import retrofit2.Call;
@@ -8,7 +9,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public interface MovieApi {
+public interface ApiService {
 
     //Search for movies title
     //https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&query=jack
@@ -22,7 +23,7 @@ public interface MovieApi {
     //https://api.themoviedb.org/3/movie/popular       ?api_key=543ced1b67d908afce8f45154ad28aef&page=1
 
     @GET("/3/movie/popular")
-    Call<MovieSearchResponse> getPopular(
+    Call<MovieResponse> getPopular(
             @Query("api_key")String key,
             @Query("page")int page);
 

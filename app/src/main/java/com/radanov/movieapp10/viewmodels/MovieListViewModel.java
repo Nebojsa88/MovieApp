@@ -15,14 +15,15 @@ public class MovieListViewModel extends ViewModel {
 
     public MovieListViewModel() {
         movieRepository = MovieRepository.getInstance();
+
     }
 
     public LiveData<List<MovieModel>> getMovies() {
         return movieRepository.getMovies();
     }
 
-    public LiveData<List<MovieModel>> getPop() {
-        return movieRepository.getPop();
+    public LiveData<List<MovieModel>> getPopularMovies() {
+        return movieRepository.getPopularMovies();
     }
 
     //3-Calling method in view-model

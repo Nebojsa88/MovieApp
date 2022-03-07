@@ -119,7 +119,7 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
     }
     private void observePopularMovie() {
 
-        movieListViewModel.getPop().observe(this, new Observer<List<MovieModel>>() {
+        movieListViewModel.getPopularMovies().observe(this, new Observer<List<MovieModel>>() {
             @Override
             public void onChanged(List<MovieModel> movieModels) {
                 //Observing for any data change

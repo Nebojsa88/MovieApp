@@ -2,7 +2,7 @@ package com.radanov.movieapp10;
 
 
 import android.content.Context;
-import android.content.Intent;
+
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -14,10 +14,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LifecycleOwner;
+
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,12 +29,14 @@ import com.radanov.movieapp10.adapters.OnMovieListener;
 import com.radanov.movieapp10.databinding.FragmentHomeBinding;
 import com.radanov.movieapp10.models.MovieModel;
 import com.radanov.movieapp10.models.MovieModelOffline;
+import com.radanov.movieapp10.response.MovieApiClient;
 import com.radanov.movieapp10.viewmodels.MovieListViewModel;
 import com.radanov.movieapp10.viewmodels.MovieViewModelDb;
 import com.radanov.movieapp10.viewmodels.MovieViewModelOffline;
 
+
 import java.util.List;
-import java.util.Objects;
+
 
 
 public class HomeFragment extends Fragment implements OnMovieListener {
@@ -40,6 +44,8 @@ public class HomeFragment extends Fragment implements OnMovieListener {
     Context context;
 
     private FragmentHomeBinding binding;
+
+    private NavController navController;
 
     //RecycleView
     private RecyclerView recyclerView;
@@ -57,9 +63,11 @@ public class HomeFragment extends Fragment implements OnMovieListener {
         super.onCreate(savedInstanceState);
         context = getContext();
 
+
         movieListViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
         movieViewModelDb = new ViewModelProvider(this).get(MovieViewModelDb.class);
         movieViewModelOffline = new ViewModelProvider(this).get(MovieViewModelOffline.class);
+        MovieApiClient.getInstance().searchMoviesPop(1);
 
         //Objects.requireNonNull(context.getSupportActionBar()).setTitle("Movies");
     }
@@ -68,6 +76,8 @@ public class HomeFragment extends Fragment implements OnMovieListener {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
+        navController = NavHostFragment.findNavController(this);
+        movieViewModelDb = new ViewModelProvider(this).get(MovieViewModelDb.class);
 
         recyclerView = binding.recyclerView;
 
@@ -92,10 +102,9 @@ public class HomeFragment extends Fragment implements OnMovieListener {
             adapter.setOnItemClickListener(new MovieOfflineAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(MovieModelOffline movieModelOffline) {
-
-                    /*Intent intent = new Intent(context, MovieDetailsActivity.class);
-                    intent.putExtra("movieOff", movieModelOffline);
-                    startActivity(intent);*/
+                    Bundle args = new Bundle();
+                    args.putSerializable("movieOff", movieModelOffline);
+                    navController.navigate(R.id.action_homeFragment_to_movieDetailsFragment);
                 }
             });
 
@@ -109,7 +118,7 @@ public class HomeFragment extends Fragment implements OnMovieListener {
         observePopularMovie();
 
         //getting popular movies
-        movieListViewModel.searchMoviePop(1);
+        //movieListViewModel.searchMoviePop(1);
 
 
         // Inflate the layout for this fragment
@@ -124,6 +133,8 @@ public class HomeFragment extends Fragment implements OnMovieListener {
         movieRecycleAdapter = new MovieRecycleView(this);
         recyclerView.setAdapter(movieRecycleAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+
+
 
         //Recycle View pagination
         //Loading next page of api result
@@ -142,7 +153,7 @@ public class HomeFragment extends Fragment implements OnMovieListener {
 
     private void observePopularMovie() {
 
-        movieListViewModel.getPop().observe(getViewLifecycleOwner(), new Observer<List<MovieModel>>() {
+        movieListViewModel.getPopularMovies().observe(getViewLifecycleOwner(), new Observer<List<MovieModel>>() {
             @Override
             public void onChanged(List<MovieModel> movieModels) {
                 //Observing for any data change
@@ -190,7 +201,9 @@ public class HomeFragment extends Fragment implements OnMovieListener {
 
     @Override
     public void onMovieClick(int position) {
-
+        Bundle args = new Bundle();
+        args.putSerializable("movie", movieRecycleAdapter.getSelectedMovie(position));
+        navController.navigate(R.id.action_homeFragment_to_movieDetailsFragment, args);
     }
 
     @Override

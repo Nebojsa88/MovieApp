@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
+    <!--<Button
         android:id="@+id/button_goToApp"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/nav_host_fragment"
-        app:layout_constraintVertical_bias="0.369" />
+        app:layout_constraintVertical_bias="0.369" />-->
 
     <fragment
         android:id="@+id/nav_host_fragment"

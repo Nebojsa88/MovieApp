@@ -3,15 +3,37 @@ package com.radanov.movieapp10.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class MovieModel implements Parcelable {
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
+public class MovieModel implements Serializable {
+
+        @SerializedName("id")
+        @Expose
         private int id;
+        @SerializedName("title")
+        @Expose
         private String title;
+        @SerializedName("poster_path")
+        @Expose
         private String poster_path;
+        @SerializedName("release_date")
+        @Expose
         private String release_date;
+        @SerializedName("vote_average")
+        @Expose
         private float vote_average;
+        @SerializedName("overview")
+        @Expose
         private String overview;
+        @SerializedName("original_language")
+        @Expose
         private String original_language;
+
+        public MovieModel() {
+        }
 
         public MovieModel(int id, String title, String poster_path, String release_date, float vote_average, String overview, String original_language) {
                 this.id = id;
@@ -33,7 +55,7 @@ public class MovieModel implements Parcelable {
                 original_language = in.readString();
         }
 
-        public static final Creator<MovieModel> CREATOR = new Creator<MovieModel>() {
+        /*public static final Creator<MovieModel> CREATOR = new Creator<MovieModel>() {
                 @Override
                 public MovieModel createFromParcel(Parcel in) {
                         return new MovieModel(in);
@@ -43,7 +65,7 @@ public class MovieModel implements Parcelable {
                 public MovieModel[] newArray(int size) {
                         return new MovieModel[size];
                 }
-        };
+        };*/
 
         public int getId() {
                 return id;
@@ -73,7 +95,7 @@ public class MovieModel implements Parcelable {
                 return original_language;
         }
 
-        @Override
+      /*  @Override
         public int describeContents() {
                 return 0;
         }
@@ -87,5 +109,5 @@ public class MovieModel implements Parcelable {
                 parcel.writeFloat(vote_average);
                 parcel.writeString(overview);
                 parcel.writeString(original_language);
-        }
+        }*/
 }
