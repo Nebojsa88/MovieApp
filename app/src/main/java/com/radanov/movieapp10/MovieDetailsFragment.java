@@ -14,8 +14,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.radanov.movieapp10.databinding.FragmentMovieDetailsBinding;
-import com.radanov.movieapp10.models.MovieModel;
 import com.radanov.movieapp10.models.MovieModelDb;
+import com.radanov.movieapp10.models.MovieModelOffline;
 import com.radanov.movieapp10.viewmodels.MovieViewModelDb;
 
 
@@ -23,7 +23,7 @@ public class MovieDetailsFragment extends Fragment {
 
 
     FragmentMovieDetailsBinding binding;
-    private MovieModel movie;
+    private MovieModelOffline movie;
     Context context;
 
     MovieViewModelDb movieViewModelDb;
@@ -44,10 +44,9 @@ public class MovieDetailsFragment extends Fragment {
 
 
         if (getArguments() != null) {
-            movie = (MovieModel) getArguments().getSerializable("movie");
+            movie = (MovieModelOffline) getArguments().getSerializable("movie");
         }
         initView();
-
 
         // Inflate the layout for this fragment
         return binding.getRoot();

@@ -72,7 +72,7 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
         //SetupSearchView();
 
         movieListViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
-        movieViewModelDb = new ViewModelProvider(this).get(MovieViewModelDb.class);
+        //movieViewModelDb = new ViewModelProvider(this).get(MovieViewModelDb.class);
         movieViewModelOffline = new ViewModelProvider(this).get(MovieViewModelOffline.class);
 
         if(!haveNetworkConnection()){
@@ -139,7 +139,7 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
                     for (MovieModel movies: movieModels){
                         //Get the data in Log
                         Log.v("Tag", "onChanged: " + movies.getTitle());
-                        movieRecycleAdapter.setmMovies(movieModels);
+                       // movieRecycleAdapter.setmMovies(movieModels);
                         Log.v("Tag", "onChanged: " + movies.getRelease_date());
                     }
                 }
@@ -157,7 +157,7 @@ public class MovieListActivity extends AppCompatActivity implements OnMovieListe
                     for (MovieModel movies: movieModels){
                         //Get the data in Log
                         Log.v("Tag", "onChanged: " + movies.getTitle());
-                        movieRecycleAdapter.setmMovies(movieModels);
+                       // movieRecycleAdapter.setmMovies(movieModels);
                         Log.v("Tag", "onChanged: " + movies.getRelease_date());
                     }
                 }

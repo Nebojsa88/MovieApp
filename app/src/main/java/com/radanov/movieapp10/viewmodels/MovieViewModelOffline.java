@@ -1,6 +1,8 @@
 package com.radanov.movieapp10.viewmodels;
 
 import android.app.Application;
+
+import com.radanov.movieapp10.models.MovieModel;
 import com.radanov.movieapp10.models.MovieModelOffline;
 import com.radanov.movieapp10.repositories.MovieRepositoryOffline;
 import java.util.List;
@@ -20,6 +22,11 @@ public class MovieViewModelOffline extends AndroidViewModel {
         repository = new MovieRepositoryOffline(application);
         movies = repository.getAllOfflineMovies();
     }
+
+    public LiveData<List<MovieModelOffline>> getPopularMovies() {
+        return repository.getPopularMovies();
+    }
+
     public void insert(MovieModelOffline movieModelOffline)
     {
         repository.insert(movieModelOffline);

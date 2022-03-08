@@ -6,19 +6,35 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 @Entity(tableName = "movie_offline")
 public class MovieModelOffline implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int movieId;
-
+    @SerializedName("id")
+    @Expose
     private int id;
+    @SerializedName("title")
+    @Expose
     private String title;
+    @SerializedName("poster_path")
+    @Expose
     private String poster_path;
+    @SerializedName("release_date")
+    @Expose
     private String release_date;
+    @SerializedName("vote_average")
+    @Expose
     private float vote_average;
+    @SerializedName("overview")
+    @Expose
     private String overview;
+    @SerializedName("original_language")
+    @Expose
     private String original_language;
 
     public MovieModelOffline(String title, String poster_path, float vote_average, String overview) {

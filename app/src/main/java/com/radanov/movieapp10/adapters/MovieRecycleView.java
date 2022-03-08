@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.radanov.movieapp10.R;
 import com.radanov.movieapp10.models.MovieModel;
+import com.radanov.movieapp10.models.MovieModelOffline;
 import com.radanov.movieapp10.utils.Credentials;
 
 import java.util.List;
@@ -16,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MovieRecycleView extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<MovieModel> mMovies;
+    private List<MovieModelOffline> mMovies;
     private OnMovieListener onMovieListener;
 
     private static final int DISPLAY_POP = 1;
@@ -51,7 +52,7 @@ public class MovieRecycleView extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         int itemViewType = getItemViewType(position);
         if(itemViewType == DISPLAY_SEARCH){
-            //Vote avarge is over 10 , and our rating bar is over 5 stars : dividing by 2
+            //Vote average is over 10 , and our rating bar is over 5 stars : dividing by 2
             ((MovieViewHolder)holder).ratingBar.setRating((mMovies.get(position).getVote_average())/2);
 
             //ImageView using Glide library
@@ -93,13 +94,13 @@ public class MovieRecycleView extends RecyclerView.Adapter<RecyclerView.ViewHold
         return 0;
     }
 
-    public void setmMovies(List<MovieModel> mMovies) {
+    public void setmMovies(List<MovieModelOffline> mMovies) {
         this.mMovies = mMovies;
         notifyDataSetChanged();
     }
 
     //Getting the ID of the movie clicked
-    public MovieModel getSelectedMovie(int position){
+    public MovieModelOffline getSelectedMovie(int position){
         if(mMovies != null){
             if(mMovies.size() > 0 ){
                return mMovies.get(position);

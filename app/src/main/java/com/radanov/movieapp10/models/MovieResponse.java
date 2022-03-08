@@ -12,7 +12,7 @@ public class MovieResponse {
     int page;
     @SerializedName("results")
     @Expose
-    List<MovieModel> results;
+    List<MovieModelOffline> results;
     @SerializedName("total_pages")
     @Expose
     int total_pages;
@@ -28,11 +28,11 @@ public class MovieResponse {
         this.page = page;
     }
 
-    public List<MovieModel> getResults() {
+    public List<MovieModelOffline> getResults() {
         return results;
     }
 
-    public void setResults(List<MovieModel> results) {
+    public void setResults(List<MovieModelOffline> results) {
         this.results = results;
     }
 

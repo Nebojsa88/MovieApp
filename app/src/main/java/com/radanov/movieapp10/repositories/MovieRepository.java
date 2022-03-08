@@ -55,8 +55,8 @@ public class MovieRepository {
             @Override
             public void onResponse(@NonNull Call<MovieResponse> call, @NonNull Response<MovieResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    if(response.body().getResults() != null)
-                    mMoviesPop.setValue(response.body().getResults());
+                    //if(response.body().getResults() != null)
+                   // mMoviesPop.setValue(response.body().getResults());
                 }
             }
 

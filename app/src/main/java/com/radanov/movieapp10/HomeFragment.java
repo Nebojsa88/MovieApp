@@ -37,8 +37,6 @@ import com.radanov.movieapp10.viewmodels.MovieViewModelOffline;
 
 import java.util.List;
 
-
-
 public class HomeFragment extends Fragment implements OnMovieListener {
 
     Context context;
@@ -65,7 +63,7 @@ public class HomeFragment extends Fragment implements OnMovieListener {
 
 
         movieListViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
-        movieViewModelDb = new ViewModelProvider(this).get(MovieViewModelDb.class);
+        //movieViewModelDb = new ViewModelProvider(this).get(MovieViewModelDb.class);
         movieViewModelOffline = new ViewModelProvider(this).get(MovieViewModelOffline.class);
         MovieApiClient.getInstance().searchMoviesPop(1);
 
@@ -77,7 +75,7 @@ public class HomeFragment extends Fragment implements OnMovieListener {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         navController = NavHostFragment.findNavController(this);
-        movieViewModelDb = new ViewModelProvider(this).get(MovieViewModelDb.class);
+        //movieViewModelDb = new ViewModelProvider(this).get(MovieViewModelDb.class);
 
         recyclerView = binding.recyclerView;
 
@@ -89,12 +87,12 @@ public class HomeFragment extends Fragment implements OnMovieListener {
             final MovieOfflineAdapter adapter = new MovieOfflineAdapter();
             recyclerView.setAdapter(adapter);
 
-            movieViewModelOffline = ViewModelProviders.of(this).get(MovieViewModelOffline.class);
+            //movieViewModelOffline = ViewModelProviders.of(this).get(MovieViewModelOffline.class);
             movieViewModelOffline.getAllOfflineMovies().observe(getViewLifecycleOwner(), new Observer<List<MovieModelOffline>>() {
                 @Override
-                public void onChanged(List<MovieModelOffline> movieModelOfflines) {
+                public void onChanged(List<MovieModelOffline> movieModelOffline) {
                     //update recycle
-                    adapter.setOfflineMovies(movieModelOfflines);
+                    adapter.setOfflineMovies(movieModelOffline);
                 }
 
             });
@@ -153,28 +151,16 @@ public class HomeFragment extends Fragment implements OnMovieListener {
 
     private void observePopularMovie() {
 
-        movieListViewModel.getPopularMovies().observe(getViewLifecycleOwner(), new Observer<List<MovieModel>>() {
+        movieViewModelOffline.getPopularMovies().observe(getViewLifecycleOwner(), new Observer<List<MovieModelOffline>>() {
             @Override
-            public void onChanged(List<MovieModel> movieModels) {
+            public void onChanged(List<MovieModelOffline> movieModels) {
                 //Observing for any data change
                 if (movieModels != null) {
                     movieViewModelOffline.deleteAll();
                     for (int i = 0; i < movieModels.size(); i++) {
-                        MovieModel movie1 = movieModels.get(i);
-                        String title = movie1.getTitle();
-                        String imagePath = movie1.getPoster_path();
-                        String overview = movie1.getOverview();
-                        float rating = movie1.getVote_average();
-
-                        MovieModelOffline movieOffline1 = new MovieModelOffline(title, imagePath, rating, overview);
-                        movieViewModelOffline.insert(movieOffline1);
-                        Log.v("Tag", "Saved to database: " + movieOffline1.getTitle());
-                    }
-                    for (MovieModel movies : movieModels) {
-                        //Get the data in Log
-                        Log.v("Tag", "onChanged: " + movies.getTitle());
+                        movieViewModelOffline.insert(movieModels.get(i));
                         movieRecycleAdapter.setmMovies(movieModels);
-                        Log.v("Tag", "onChanged: " + movies.getRelease_date());
+                        Log.v("Tag", "Saved to database: " + movieModels.get(i).getTitle());
                     }
                 }
             }
