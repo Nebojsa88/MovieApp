@@ -11,13 +11,15 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.radanov.movieapp10.adapters.MovieDbAdapter;
 import com.radanov.movieapp10.databinding.FragmentWatchlistBinding;
-import com.radanov.movieapp10.models.MovieModelDb;
+import com.radanov.movieapp10.models.MovieModelOffline;
 import com.radanov.movieapp10.viewmodels.MovieViewModelDb;
 
 import java.util.List;
@@ -25,11 +27,11 @@ import java.util.List;
 
 public class WatchlistFragment extends Fragment {
 
-
     FragmentWatchlistBinding binding;
-    private MovieViewModelDb movieViewModelDb;
     Context context;
 
+    private MovieViewModelDb movieViewModelDb;
+    private NavController navController;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -37,7 +39,7 @@ public class WatchlistFragment extends Fragment {
         context = getContext();
 
         binding = FragmentWatchlistBinding.inflate(inflater, container, false);
-
+        navController = NavHostFragment.findNavController(this);
         movieViewModelDb = new ViewModelProvider(this).get(MovieViewModelDb.class);
 
         RecyclerView recyclerView = binding.recyclerViewWatchlist;
@@ -48,9 +50,9 @@ public class WatchlistFragment extends Fragment {
         final MovieDbAdapter adapter = new MovieDbAdapter();
         recyclerView.setAdapter(adapter);
 
-        movieViewModelDb.getAllDbMovies().observe(getViewLifecycleOwner(), new Observer<List<MovieModelDb>>() {
+        movieViewModelDb.getAllDbMovies().observe(getViewLifecycleOwner(), new Observer<List<MovieModelOffline>>() {
             @Override
-            public void onChanged(List<MovieModelDb> movieModelDbs) {
+            public void onChanged(List<MovieModelOffline> movieModelDbs) {
                 //update recycle
                 adapter.setMoviesDb(movieModelDbs);
             }
@@ -71,20 +73,16 @@ public class WatchlistFragment extends Fragment {
 
         adapter.setOnItemClickListener(new MovieDbAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(MovieModelDb movieModelDb) {
-                /*Intent intent = new Intent(WatchlistActivity.this, com.radanov.movieapp10.UpdateMovieActivity.class);
-                intent.putExtra("id", movieModelDb.getId());
-                intent.putExtra("titleUpdate", movieModelDb.getMovieDbTitle());
-                intent.putExtra("descriptionUpdate",movieModelDb.getMovieDbDescription());
-                intent.putExtra("imagePath",movieModelDb.getImagePath());
-                startActivity(intent);*/
+            public void onItemClick(MovieModelOffline movieModelDb) {
+
+                Bundle args = new Bundle();
+                args.putSerializable("movie", movieModelDb);
+                args.putBoolean("is_watchlist", true);
+                navController.navigate(R.id.action_dashboardFragment_to_movieDetailsFragment, args);
 
             }
         });
 
-
-
-        // Inflate the layout for this fragment
         return binding.getRoot();
     }
 

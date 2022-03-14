@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="10dp"
+    android:layout_marginStart="10dp"
     android:layout_marginTop="10dp"
     android:background="@android:color/holo_orange_light"
     android:orientation="vertical">
 
 
     <androidx.cardview.widget.CardView
-
         android:id="@+id/card_view"
         android:layout_width="305dp"
         android:layout_height="450dp"
@@ -20,8 +20,6 @@
         app:cardElevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -30,7 +28,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/movieackground1" />
+            android:src="@drawable/movieackground1"
+            android:contentDescription="TODO"
+            tools:ignore="ContentDescription" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,15 +49,6 @@
                 android:textColor="@color/white"
                 android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/textViewOverviewWatch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:background="?attr/actionModeSplitBackground"
-                android:text="TextView"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

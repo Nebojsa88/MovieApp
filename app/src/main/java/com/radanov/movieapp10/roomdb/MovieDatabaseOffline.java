@@ -12,7 +12,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = MovieModelOffline.class, version = 1)
+@Database(entities = MovieModelOffline.class, version = 2)
 public abstract class MovieDatabaseOffline extends RoomDatabase {
 
     private static MovieDatabaseOffline instance;

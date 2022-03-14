@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,25 +18,17 @@
         app:srcCompat="@drawable/fightclub1" />
 
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shadow_back"
+        android:elevation="20dp"
+        android:background="@drawable/bottom_sheet_background"
         android:orientation="vertical"
         android:padding="6dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_details"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-
-        <RatingBar
-            android:id="@+id/ratingBar_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_title_details" />
 
         <TextView
             android:id="@+id/textView_title_details"
@@ -49,40 +42,114 @@
             android:textColor="#E5F1F0"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView_details" />
 
         <TextView
-            android:id="@+id/textView_desc_details"
-            android:layout_width="match_parent"
+            android:id="@+id/textView_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="Rating:"
+            android:textColor="#E5F1F0"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/TV_rating"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_title_details" />
+
+        <TextView
+            android:id="@+id/TV_rating"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:paddingStart="8dp"
+            android:text="10"
+            android:textColor="@android:color/holo_orange_light"
+            android:textSize="16sp"
+            android:maxLines="2"
+            app:layout_constraintEnd_toStartOf="@+id/buttonAddWatch"
+            app:layout_constraintStart_toEndOf="@+id/textView_rating"
+            app:layout_constraintTop_toTopOf="@+id/textView_rating"
+            app:layout_constraintBottom_toBottomOf="@id/textView_rating" />
+
+        <TextView
+            android:id="@+id/textView_date"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="16dp"
-            android:text="TextView"
+            android:text="Release date:"
             android:textColor="#E5F1F0"
             android:textSize="16sp"
             android:maxLines="2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ratingBar_details" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_rating" />
+
+        <TextView
+            android:id="@+id/TV_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:paddingStart="8dp"
+            android:text="2005"
+            android:textColor="@android:color/holo_orange_light"
+            android:textSize="16sp"
+            android:maxLines="2"
+            app:layout_constraintTop_toTopOf="@+id/textView_date"
+            app:layout_constraintStart_toEndOf="@+id/textView_date"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_date"
+            />
+
+        <TextView
+            android:id="@+id/textView_desc_details"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="TextView"
+            android:textColor="#E5F1F0"
+            android:textSize="16sp"
+            android:maxLines="3"
+            app:layout_constraintEnd_toStartOf="@+id/btn_see_more"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_date"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/btn_see_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp"
+            android:text="...see more"
+            android:textColor="@android:color/holo_orange_light"
+            android:textSize="16sp"
+            android:maxLines="3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <Button
+            android:id="@+id/buttonAddWatch"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/black"
+            android:textSize="10dp"
+            android:text="Add to \nwatchlist"
+            android:textColor="@android:color/holo_orange_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_title_details"
+
+             />
 
 
-    </LinearLayout>
 
-    <Button
-        android:id="@+id/buttonAddWatch"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:text="Add to watchlist"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.948"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.064" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

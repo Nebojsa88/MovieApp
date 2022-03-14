@@ -17,17 +17,17 @@ import androidx.fragment.app.Fragment;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
+
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.radanov.movieapp10.adapters.MovieOfflineAdapter;
+
 import com.radanov.movieapp10.adapters.MovieRecycleView;
 import com.radanov.movieapp10.adapters.OnMovieListener;
 import com.radanov.movieapp10.databinding.FragmentHomeBinding;
-import com.radanov.movieapp10.models.MovieModel;
+
 import com.radanov.movieapp10.models.MovieModelOffline;
 import com.radanov.movieapp10.response.MovieApiClient;
 import com.radanov.movieapp10.viewmodels.MovieListViewModel;
@@ -78,26 +78,28 @@ public class HomeFragment extends Fragment implements OnMovieListener {
         //movieViewModelDb = new ViewModelProvider(this).get(MovieViewModelDb.class);
 
         recyclerView = binding.recyclerView;
+        configureRecyclerView();
 
         if (!haveNetworkConnection()) {
 
-            recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+            /*recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
             recyclerView.setHasFixedSize(true);
 
             final MovieOfflineAdapter adapter = new MovieOfflineAdapter();
-            recyclerView.setAdapter(adapter);
+            recyclerView.setAdapter(adapter);*/
 
             //movieViewModelOffline = ViewModelProviders.of(this).get(MovieViewModelOffline.class);
             movieViewModelOffline.getAllOfflineMovies().observe(getViewLifecycleOwner(), new Observer<List<MovieModelOffline>>() {
                 @Override
                 public void onChanged(List<MovieModelOffline> movieModelOffline) {
                     //update recycle
-                    adapter.setOfflineMovies(movieModelOffline);
+                    movieRecycleAdapter.setmMovies(movieModelOffline);
+                    //adapter.setOfflineMovies(movieModelOffline);
                 }
 
             });
 
-            adapter.setOnItemClickListener(new MovieOfflineAdapter.OnItemClickListener() {
+            /*adapter.setOnItemClickListener(new MovieOfflineAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(MovieModelOffline movieModelOffline) {
                     Bundle args = new Bundle();
@@ -105,15 +107,16 @@ public class HomeFragment extends Fragment implements OnMovieListener {
                     navController.navigate(R.id.action_homeFragment_to_movieDetailsFragment);
                 }
             });
-
+*/
         } else {
             //RecycleView
-            configureRecyclerView();
+            //configureRecyclerView();
+            observePopularMovie();
         }
 
         //Calling the observers
         // observingAnyChange();
-        observePopularMovie();
+
 
         //getting popular movies
         //movieListViewModel.searchMoviePop(1);
@@ -131,7 +134,6 @@ public class HomeFragment extends Fragment implements OnMovieListener {
         movieRecycleAdapter = new MovieRecycleView(this);
         recyclerView.setAdapter(movieRecycleAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-
 
 
         //Recycle View pagination

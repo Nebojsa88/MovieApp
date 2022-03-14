@@ -13,8 +13,7 @@ import java.io.Serializable;
 
 @Entity(tableName = "movie_offline")
 public class MovieModelOffline implements Serializable {
-    @PrimaryKey(autoGenerate = true)
-    private int movieId;
+    @PrimaryKey
     @SerializedName("id")
     @Expose
     private int id;
@@ -84,13 +83,13 @@ public class MovieModelOffline implements Serializable {
                 '}';
     }
 
-    public int getMovieId() {
+    /*public int getMovieId() {
         return movieId;
     }
 
     public void setMovieId(int movieId) {
         this.movieId = movieId;
-    }
+    }*/
 
     public int getId() {
         return id;

@@ -53,14 +53,14 @@ public class WatchlistActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         movieViewModelDb = ViewModelProviders.of(this).get(MovieViewModelDb.class);
-        movieViewModelDb.getAllDbMovies().observe(this, new Observer<List<MovieModelDb>>() {
+       /* movieViewModelDb.getAllDbMovies().observe(this, new Observer<List<MovieModelDb>>() {
             @Override
             public void onChanged(List<MovieModelDb> movieModelDbs) {
                 //update recycle
                 adapter.setMoviesDb(movieModelDbs);
             }
 
-        });
+        });*/
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -70,11 +70,11 @@ public class WatchlistActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                movieViewModelDb.delete(adapter.getMoviesDb(viewHolder.getAdapterPosition()));
+                //movieViewModelDb.delete(adapter.getMoviesDb(viewHolder.getAdapterPosition()));
             }
         }).attachToRecyclerView(recyclerView);
 
-        adapter.setOnItemClickListener(new MovieDbAdapter.OnItemClickListener() {
+        /*adapter.setOnItemClickListener(new MovieDbAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(MovieModelDb movieModelDb) {
                 Intent intent = new Intent(WatchlistActivity.this, com.radanov.movieapp10.UpdateMovieActivity.class);
@@ -85,7 +85,7 @@ public class WatchlistActivity extends AppCompatActivity {
                 startActivity(intent);
 
             }
-        });
+        });*/
 
         //addNewMovieWatchlist();
     }

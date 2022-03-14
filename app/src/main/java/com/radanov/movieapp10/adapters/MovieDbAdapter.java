@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.radanov.movieapp10.R;
 import com.radanov.movieapp10.models.MovieModelDb;
+import com.radanov.movieapp10.models.MovieModelOffline;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class MovieDbAdapter extends RecyclerView.Adapter<MovieDbAdapter.MovieDbHolder> {
 
 
-    private List<MovieModelDb> moviesDb = new ArrayList<>();
+    private List<MovieModelOffline> moviesDb = new ArrayList<>();
     private OnItemClickListener listener;
 
 
@@ -34,11 +35,11 @@ public class MovieDbAdapter extends RecyclerView.Adapter<MovieDbAdapter.MovieDbH
     @Override
     public void onBindViewHolder(@NonNull MovieDbHolder holder, int position) {
         int itemViewType = getItemViewType(position);
-        MovieModelDb currentMovie = moviesDb.get(position);
-        holder.textViewTitle.setText(currentMovie.movieDbTitle);
-        holder.textViewOverview.setText(currentMovie.movieDbDescription);
+        MovieModelOffline currentMovie = moviesDb.get(position);
+        holder.textViewTitle.setText(currentMovie.getTitle());
+       //holder.textViewOverview.setText(currentMovie.getOverview());
 
-        Glide.with(holder.itemView.getContext()).load("https://image.tmdb.org/t/p/w500/" + currentMovie.getImagePath())
+        Glide.with(holder.itemView.getContext()).load("https://image.tmdb.org/t/p/w500/" + currentMovie.getPoster_path())
                 .into(((MovieDbHolder)holder).imageView);
 
 
@@ -49,13 +50,13 @@ public class MovieDbAdapter extends RecyclerView.Adapter<MovieDbAdapter.MovieDbH
         return moviesDb.size();
     }
 
-    public void setMoviesDb(List<MovieModelDb> moviesDb)
+    public void setMoviesDb(List<MovieModelOffline> moviesDb)
     {
         this.moviesDb = moviesDb;
         notifyDataSetChanged();
     }
 
-    public MovieModelDb getMoviesDb(int position)
+    public MovieModelOffline getMoviesDb(int position)
     {
         return moviesDb.get(position);
     }
@@ -71,7 +72,7 @@ public class MovieDbAdapter extends RecyclerView.Adapter<MovieDbAdapter.MovieDbH
             super(itemView);
 
             textViewTitle = itemView.findViewById(R.id.textViewTitleWatch);
-            textViewOverview = itemView.findViewById(R.id.textViewOverviewWatch);
+            //textViewOverview = itemView.findViewById(R.id.textViewOverviewWatch);
             imageView = itemView.findViewById(R.id.movie_img_watchlist);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +89,7 @@ public class MovieDbAdapter extends RecyclerView.Adapter<MovieDbAdapter.MovieDbH
     }
 
     public interface OnItemClickListener {
-        void onItemClick(MovieModelDb movieModelDb);
+        void onItemClick(MovieModelOffline movieModelDb);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {

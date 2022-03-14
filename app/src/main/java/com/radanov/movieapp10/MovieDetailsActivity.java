@@ -56,7 +56,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 MovieModelDb movieModelDb = new MovieModelDb(movieTitle, movieDescription, imagePath);
 
 
-                movieViewModelDb.insert(movieModelDb);
+                //movieViewModelDb.insert(movieModelDb);
 
                 Toast.makeText(MovieDetailsActivity.this, "Movie Saved to your watchlist", Toast.LENGTH_SHORT).show();
                 //Intent i = new Intent(MovieDetailsActivity.this, MovieListActivity.class);

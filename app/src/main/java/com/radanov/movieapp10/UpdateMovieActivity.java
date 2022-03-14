@@ -70,7 +70,7 @@ public class UpdateMovieActivity extends AppCompatActivity {
         if(movieId != -1){
 
             movieModelDb.setId(movieId);
-            movieViewModelDb.update(movieModelDb);
+           // movieViewModelDb.update(movieModelDb);
             Intent intent = new Intent(UpdateMovieActivity.this, WatchlistActivity.class);
             Toast.makeText(UpdateMovieActivity.this, "Movie is updated", Toast.LENGTH_SHORT).show();
             startActivity(intent);

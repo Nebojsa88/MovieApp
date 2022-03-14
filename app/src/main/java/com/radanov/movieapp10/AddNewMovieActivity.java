@@ -66,7 +66,7 @@ public class AddNewMovieActivity extends AppCompatActivity {
 
 
         MovieModelDb movieModelDb = new MovieModelDb(movieTitle, movieOverview, imagePath);
-        movieViewModelDb.insert(movieModelDb);
+        //movieViewModelDb.insert(movieModelDb);
         Toast.makeText(getApplicationContext(), "Add new activity saved", Toast.LENGTH_LONG).show();
         Intent i = new Intent(AddNewMovieActivity.this, WatchlistActivity.class);
         startActivity(i);

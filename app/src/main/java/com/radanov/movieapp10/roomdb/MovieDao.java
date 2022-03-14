@@ -18,16 +18,16 @@ public interface MovieDao {
 
 
     @Insert()
-    void Insert(MovieModelDb movieModelDb);
+    void Insert(MovieModelOffline movieModel);
 
     @Update
-    void Update(MovieModelDb movieModelDb);
+    void Update(MovieModelOffline movieModel);
 
     @Delete
-    void Delete(MovieModelDb movieModelDb);
+    void Delete(MovieModelOffline movieModel);
 
-    @Query("SELECT * FROM movie_table ORDER BY id ASC")
-    LiveData<List<MovieModelDb>> getAllDbNotes();
+    @Query("SELECT * FROM movie_offline ORDER BY id ASC")
+    LiveData<List<MovieModelOffline>> getAllDbNotes();
 
 
 
