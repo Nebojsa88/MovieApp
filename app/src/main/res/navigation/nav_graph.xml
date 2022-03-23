@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.radanov.movieapp10.HomeFragment"
+        android:name="com.radanov.movieapp10.ui.fragments.HomeFragment"
         android:label="Popular Movies"
         tools:layout="@layout/fragment_home" >
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="com.radanov.movieapp10.WatchlistFragment"
+        android:name="com.radanov.movieapp10.ui.fragments.WatchlistFragment"
         android:label="Watchlist"
         tools:layout="@layout/fragment_watchlist" >
         <action
@@ -33,12 +33,12 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment2"
-        android:name="com.radanov.movieapp10.SettingsFragment"
+        android:name="com.radanov.movieapp10.ui.fragments.SettingsFragment"
         android:label="Settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/movieDetailsFragment"
-        android:name="com.radanov.movieapp10.MovieDetailsFragment"
+        android:name="com.radanov.movieapp10.ui.fragments.MovieDetailsFragment"
         android:label="Movie Details"
         tools:layout="@layout/fragment_movie_details" />
 

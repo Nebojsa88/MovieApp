@@ -2,7 +2,6 @@ package com.radanov.movieapp10;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,15 +13,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.radanov.movieapp10.adapters.MovieDbAdapter;
-import com.radanov.movieapp10.models.MovieModelDb;
-import com.radanov.movieapp10.viewmodels.MovieViewModelDb;
-
-import java.util.List;
+import com.radanov.movieapp10.ui.adapters.MovieDbAdapter;
 
 public class WatchlistActivity extends AppCompatActivity {
 
-    private MovieViewModelDb movieViewModelDb;
+
     Button btnAddNewWatchlist;
 
     @Override
@@ -42,8 +37,8 @@ public class WatchlistActivity extends AppCompatActivity {
         btnAddNewWatchlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(WatchlistActivity.this, AddNewMovieActivity.class);
-                startActivity(i);
+           /*     Intent i = new Intent(WatchlistActivity.this, AddNewMovieActivity.class);
+                startActivity(i);*/
                 finish();
 
             }
@@ -52,7 +47,7 @@ public class WatchlistActivity extends AppCompatActivity {
         final MovieDbAdapter adapter = new MovieDbAdapter();
         recyclerView.setAdapter(adapter);
 
-        movieViewModelDb = ViewModelProviders.of(this).get(MovieViewModelDb.class);
+        //movieViewModelDb = ViewModelProviders.of(this).get(MovieViewModelDb.class);
        /* movieViewModelDb.getAllDbMovies().observe(this, new Observer<List<MovieModelDb>>() {
             @Override
             public void onChanged(List<MovieModelDb> movieModelDbs) {
@@ -94,8 +89,8 @@ public class WatchlistActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
-        Intent intent = new Intent(WatchlistActivity.this, MovieListActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(WatchlistActivity.this, MovieListActivity.class);
+       // startActivity(intent);
     }
 
     public void addNewMovieWatchlist(){

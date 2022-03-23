@@ -10,12 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieApp10">
-        <activity android:name=".AddNewMovieActivity"/>
-        <activity android:name=".UpdateMovieActivity" />
         <activity android:name=".WatchlistActivity" />
-        <activity android:name=".MovieDetailsActivity" />
-        <activity android:name=".MovieListActivity" />
-        <activity android:name=".MainActivity"
+        <activity android:name=".ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
