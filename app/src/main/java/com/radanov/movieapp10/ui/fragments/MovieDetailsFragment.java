@@ -1,6 +1,9 @@
 package com.radanov.movieapp10.ui.fragments;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,14 +13,19 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.radanov.movieapp10.R;
+import com.radanov.movieapp10.databinding.BottomSheetLayoutBinding;
 import com.radanov.movieapp10.databinding.FragmentMovieDetailsBinding;
 import com.radanov.movieapp10.databinding.LayoutBottomSheetBinding;
 import com.radanov.movieapp10.io.models.MovieModel;
@@ -30,9 +38,11 @@ import java.util.List;
 
 public class MovieDetailsFragment extends Fragment {
 
-    Context context;
+    private Context context;
     FragmentMovieDetailsBinding binding;
     LayoutBottomSheetBinding bindingBottomSheet;
+
+    BottomSheetLayoutBinding bindingBottomSheetLayout;
 
     private MovieModel movie;
     private boolean isWatchlist;
@@ -54,6 +64,7 @@ public class MovieDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentMovieDetailsBinding.inflate(inflater, container, false);
         bindingBottomSheet = LayoutBottomSheetBinding.inflate(inflater, container, false);
+        bindingBottomSheetLayout = BottomSheetLayoutBinding.inflate(inflater, container, false);
         navController = NavHostFragment.findNavController(this);
 
         movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
@@ -76,6 +87,9 @@ public class MovieDetailsFragment extends Fragment {
         return binding.getRoot();
     }
 
+
+
+
     private void initView() {
 
         binding.textViewTitleDetails.setText(movie.getTitle());
@@ -94,19 +108,25 @@ public class MovieDetailsFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(context, R.style.Theme_Design_BottomSheetDialog);
-                View bottomSheetView = LayoutInflater.from(
-                        context.getApplicationContext()).inflate(
-                        R.layout.layout_bottom_sheet, bindingBottomSheet.bottomSheetContainer);
-                bindingBottomSheet.overviewTitle.setText("Movie Overview:");
-                bindingBottomSheet.overviewPopup.setText(movie.getOverview());
-                if (bottomSheetView.getParent() != null) {
-                    ((ViewGroup) bottomSheetView.getParent()).removeView(bottomSheetView);
-                }
-                bottomSheetDialog.setContentView(bottomSheetView);
-                bottomSheetDialog.setCanceledOnTouchOutside(true);
-                bottomSheetDialog.cancel();
-                bottomSheetDialog.show();
+                showDialog();
+
+               /* BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(context, R.style.Theme_Design_BottomSheetDialog);
+
+                    View bottomSheetView = LayoutInflater.from(
+                            context.getApplicationContext()).inflate(
+                            R.layout.layout_bottom_sheet, bindingBottomSheet.bottomSheetContainer);
+
+                    bindingBottomSheet.overviewTitle.setText("Movie Overview:");
+                    bindingBottomSheet.overviewPopup.setText(movie.getOverview());
+                    if (bottomSheetView.getParent() != null) {
+                        ((ViewGroup) bottomSheetView.getParent()).removeView(bottomSheetView);
+                    }
+                    bottomSheetDialog.setContentView(bottomSheetView);
+                    bottomSheetDialog.setCanceledOnTouchOutside(true);
+                    bottomSheetDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    bottomSheetDialog.cancel();
+                    bottomSheetDialog.show();*/
+
             }
         });
 
@@ -127,5 +147,33 @@ public class MovieDetailsFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void showDialog() {
+
+        final Dialog dialog = new Dialog(context);
+
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.bottom_sheet_layout);
+
+        TextView movieOverview = dialog.findViewById(R.id.movie_overview);
+        LinearLayout editLayout = dialog.findViewById(R.id.layoutEdit);
+        movieOverview.setText(movie.getOverview());
+
+        editLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialog.dismiss();
+                Toast.makeText(context,"Edit is Clicked",Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
+
     }
 }

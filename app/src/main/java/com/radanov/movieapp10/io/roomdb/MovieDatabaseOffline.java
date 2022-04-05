@@ -53,11 +53,6 @@ public abstract class MovieDatabaseOffline extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            //movieDao.Insert(new MovieModelDb("Film 1", "Opis filma 1", "hahahha"));
-           // movieDao.Insert(new MovieModelDb("Film 2", "Opis filma 2"));
-            //noteDao.Insert(new Note("Title 3", "Description 3"));
-          // noteDao.Insert(new Note("Title 4", "Description 4"));
-           // noteDao.Insert(new Note("Title 5", "Description 5"));
             return null;
         }
     }

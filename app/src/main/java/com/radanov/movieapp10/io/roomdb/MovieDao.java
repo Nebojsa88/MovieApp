@@ -1,7 +1,5 @@
 package com.radanov.movieapp10.io.roomdb;
 
-
-
 import com.radanov.movieapp10.io.models.MovieModel;
 
 import java.util.List;
@@ -16,7 +14,6 @@ import androidx.room.Update;
 @Dao
 public interface MovieDao {
 
-
     @Insert()
     void Insert(MovieModel movieModel);
 
@@ -28,7 +25,6 @@ public interface MovieDao {
 
     @Query("SELECT * FROM movie_offline ORDER BY id ASC")
     LiveData<List<MovieModel>> getAllDbNotes();
-
 
 
 }

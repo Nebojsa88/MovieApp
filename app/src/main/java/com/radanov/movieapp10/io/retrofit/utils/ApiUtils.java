@@ -13,10 +13,6 @@ public class ApiUtils {
 
     private ApiUtils() {}
 
-   /* public static ApiService getApiService(Context context) {
-        return RetrofitClient.getClient(Credentials.BASE_URL).create(ApiService.class);
-    }*/
-
     public static ApiService getApiService() {
         return RetrofitClient.getClient(Credentials.BASE_URL).create(ApiService.class);
     }

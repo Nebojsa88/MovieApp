@@ -1,6 +1,5 @@
 package com.radanov.movieapp10.io.roomdb;
 
-
 import com.radanov.movieapp10.io.models.MovieModel;
 
 import java.util.List;

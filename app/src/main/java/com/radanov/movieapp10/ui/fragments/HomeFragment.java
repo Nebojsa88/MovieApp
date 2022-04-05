@@ -30,6 +30,7 @@ import com.radanov.movieapp10.ui.adapters.MovieRecycleView;
 import com.radanov.movieapp10.ui.adapters.OnMovieListener;
 import com.radanov.movieapp10.databinding.FragmentHomeBinding;
 
+import com.radanov.movieapp10.utils.ViewUtils;
 import com.radanov.movieapp10.viewmodels.MovieViewModel;
 
 
@@ -151,10 +152,11 @@ public class HomeFragment extends Fragment implements OnMovieListener {
     }
 
     private void observePopularMovie() {
-
+        ViewUtils.showProgressDialog(context);
         movieViewModel.getPopularMovies().observe(getViewLifecycleOwner(), new Observer<List<MovieModel>>() {
             @Override
             public void onChanged(List<MovieModel> movieList) {
+                ViewUtils.hideProgressDialog();
                 //Observing for any data change
                 if (movieList != null) {
                     movieViewModel.deleteAll();

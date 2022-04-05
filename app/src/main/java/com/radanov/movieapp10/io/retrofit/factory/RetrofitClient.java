@@ -19,12 +19,7 @@ public class RetrofitClient {
         return retrofit;
     }
 
-
-
-
-
-
-  /* private static final Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
+    /* private static final Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
             .baseUrl(Credentials.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create());
 

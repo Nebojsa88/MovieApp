@@ -1,6 +1,7 @@
 package com.radanov.movieapp10.io.repositories;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.AsyncTask;
 
 
@@ -12,7 +13,9 @@ import com.radanov.movieapp10.io.roomdb.MovieDao;
 import com.radanov.movieapp10.io.roomdb.MovieDaoOffline;
 import com.radanov.movieapp10.io.roomdb.MovieDatabase;
 import com.radanov.movieapp10.io.roomdb.MovieDatabaseOffline;
+import com.radanov.movieapp10.ui.fragments.HomeFragment;
 import com.radanov.movieapp10.utils.Credentials;
+import com.radanov.movieapp10.utils.ViewUtils;
 
 import java.util.List;
 
@@ -24,7 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MovieRepositoryOffline {
+public class MovieRepository {
 
     private MovieDaoOffline movieDaoOffline;
     private MovieDao movieDao;
@@ -38,16 +41,15 @@ public class MovieRepositoryOffline {
     //test
     private LiveData<List<MovieModel>> moviesWatchlist;
 
-    public MovieRepositoryOffline(Application application) {
+    public MovieRepository(Application application) {
         apiService = ApiUtils.getApiService();
         moviesPopular = new MutableLiveData<>();
 
         MovieDatabaseOffline database = MovieDatabaseOffline.getInstance(application);
-        //test
         MovieDatabase databaseWatchlist = MovieDatabase.getInstance(application);
+
         movieDao = databaseWatchlist.movieDao();
         moviesWatchlist = movieDao.getAllDbNotes();
-
         movieDaoOffline = database.movieDaoOffline();
         moviesOffline = movieDaoOffline.getAllOfflineMovies();
     }
@@ -148,17 +150,17 @@ public class MovieRepositoryOffline {
 
     public void insertWatchlist(MovieModel movieModel)
     {
-        new MovieRepositoryOffline.InsertWatchlistAsyncTask(movieDao).execute(movieModel);
+        new MovieRepository.InsertWatchlistAsyncTask(movieDao).execute(movieModel);
     }
 
     public void updateWatchlist(MovieModel movieModel)
     {
-        new MovieRepositoryOffline.UpdateWatchlistAsyncTask(movieDao).execute(movieModel);
+        new MovieRepository.UpdateWatchlistAsyncTask(movieDao).execute(movieModel);
     }
 
     public void deleteWatchlist(MovieModel movieModel)
     {
-        new MovieRepositoryOffline.DeleteWatchlistAsyncTask(movieDao).execute(movieModel);
+        new MovieRepository.DeleteWatchlistAsyncTask(movieDao).execute(movieModel);
     }
 
     public LiveData<List<MovieModel>> getMoviesWatchlist()

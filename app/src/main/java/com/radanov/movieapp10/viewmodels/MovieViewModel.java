@@ -1,9 +1,12 @@
 package com.radanov.movieapp10.viewmodels;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.radanov.movieapp10.io.models.MovieModel;
-import com.radanov.movieapp10.io.repositories.MovieRepositoryOffline;
+import com.radanov.movieapp10.io.repositories.MovieRepository;
+
+import java.net.ContentHandler;
 import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -11,7 +14,7 @@ import androidx.lifecycle.LiveData;
 
 public class MovieViewModel extends AndroidViewModel {
 
-    private MovieRepositoryOffline repository;
+    private MovieRepository repository;
     private LiveData<List<MovieModel>> movies;
     private LiveData<List<MovieModel>> watchlist;
 
@@ -19,7 +22,7 @@ public class MovieViewModel extends AndroidViewModel {
     public MovieViewModel(@NonNull Application application) {
         super(application);
 
-        repository = new MovieRepositoryOffline(application);
+        repository = new MovieRepository(application);
         movies = repository.getAllOfflineMovies();
     }
 
