@@ -10,7 +10,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieApp10">
-        <activity android:name=".WatchlistActivity" />
         <activity android:name=".ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>

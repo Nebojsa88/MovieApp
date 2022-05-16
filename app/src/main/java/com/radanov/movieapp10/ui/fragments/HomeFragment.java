@@ -38,7 +38,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment implements OnMovieListener {
 
-    Context context;
+    private Context context;
 
     private FragmentHomeBinding binding;
 

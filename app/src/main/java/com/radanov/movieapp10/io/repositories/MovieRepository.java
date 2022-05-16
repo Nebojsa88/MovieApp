@@ -1,7 +1,7 @@
 package com.radanov.movieapp10.io.repositories;
 
 import android.app.Application;
-import android.content.Context;
+
 import android.os.AsyncTask;
 
 
@@ -13,9 +13,9 @@ import com.radanov.movieapp10.io.roomdb.MovieDao;
 import com.radanov.movieapp10.io.roomdb.MovieDaoOffline;
 import com.radanov.movieapp10.io.roomdb.MovieDatabase;
 import com.radanov.movieapp10.io.roomdb.MovieDatabaseOffline;
-import com.radanov.movieapp10.ui.fragments.HomeFragment;
+
 import com.radanov.movieapp10.utils.Credentials;
-import com.radanov.movieapp10.utils.ViewUtils;
+
 
 import java.util.List;
 
@@ -148,35 +148,30 @@ public class MovieRepository {
         }
     }
 
-    public void insertWatchlist(MovieModel movieModel)
-    {
+    public void insertWatchlist(MovieModel movieModel) {
         new MovieRepository.InsertWatchlistAsyncTask(movieDao).execute(movieModel);
     }
 
-    public void updateWatchlist(MovieModel movieModel)
-    {
+    public void updateWatchlist(MovieModel movieModel) {
         new MovieRepository.UpdateWatchlistAsyncTask(movieDao).execute(movieModel);
     }
 
-    public void deleteWatchlist(MovieModel movieModel)
-    {
+    public void deleteWatchlist(MovieModel movieModel) {
         new MovieRepository.DeleteWatchlistAsyncTask(movieDao).execute(movieModel);
     }
 
-    public LiveData<List<MovieModel>> getMoviesWatchlist()
-    {
+    public LiveData<List<MovieModel>> getMoviesWatchlist() {
         return moviesWatchlist;
     }
 
 
-    private static class InsertWatchlistAsyncTask extends AsyncTask<MovieModel, Void, Void>
-    {
+    private static class InsertWatchlistAsyncTask extends AsyncTask<MovieModel, Void, Void> {
         private MovieDao movieDao;
 
-        private InsertWatchlistAsyncTask(MovieDao movieDao)
-        {
+        private InsertWatchlistAsyncTask(MovieDao movieDao) {
             this.movieDao = movieDao;
         }
+
         @Override
         protected Void doInBackground(MovieModel... movies) {
             movieDao.Insert(movies[0]);
@@ -184,28 +179,27 @@ public class MovieRepository {
         }
     }
 
-    private static class UpdateWatchlistAsyncTask extends AsyncTask<MovieModel, Void, Void>
-    {
+    private static class UpdateWatchlistAsyncTask extends AsyncTask<MovieModel, Void, Void> {
         private MovieDao movieDao;
 
-        private UpdateWatchlistAsyncTask(MovieDao movieDao)
-        {
+        private UpdateWatchlistAsyncTask(MovieDao movieDao) {
             this.movieDao = movieDao;
         }
+
         @Override
         protected Void doInBackground(MovieModel... movies) {
             movieDao.Update(movies[0]);
             return null;
         }
     }
-    private static class DeleteWatchlistAsyncTask extends AsyncTask<MovieModel, Void, Void>
-    {
+
+    private static class DeleteWatchlistAsyncTask extends AsyncTask<MovieModel, Void, Void> {
         private MovieDao movieDao;
 
-        private DeleteWatchlistAsyncTask(MovieDao movieDao)
-        {
+        private DeleteWatchlistAsyncTask(MovieDao movieDao) {
             this.movieDao = movieDao;
         }
+
         @Override
         protected Void doInBackground(MovieModel... movies) {
             movieDao.Delete(movies[0]);

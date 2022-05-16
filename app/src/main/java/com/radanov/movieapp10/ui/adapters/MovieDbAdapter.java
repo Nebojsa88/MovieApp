@@ -1,5 +1,6 @@
 package com.radanov.movieapp10.ui.adapters;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,7 @@ public class MovieDbAdapter extends RecyclerView.Adapter<MovieDbAdapter.MovieDbH
         return moviesDb.size();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setMoviesDb(List<MovieModel> moviesDb)
     {
         this.moviesDb = moviesDb;

@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">MovieApp10</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="please_wait">Please wait...</string>
+    <string name="please_wait">Please wait…</string>
     <string name="movie_details">Movie Details:</string>
+    <string name="popular_movies">Popular Movies</string>
+    <string name="watchlist">Watchlist</string>
+    <string name="settings">Settings</string>
 
 </resources>
